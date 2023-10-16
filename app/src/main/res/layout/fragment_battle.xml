@@ -15,11 +15,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="221dp"
-        android:layout_height="306dp"
+        android:layout_width="216dp"
+        android:layout_height="302dp"
         app:srcCompat="@drawable/pokemon1"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="141dp" />
+        tools:layout_editor_absoluteX="-12dp"
+        tools:layout_editor_absoluteY="153dp" />
 
     <ImageView
         android:id="@+id/imageView3"
