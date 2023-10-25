@@ -2,4 +2,23 @@
     <string name="app_name">IdleGame</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="singleplayer">Singleplayer</string>
+    <string name="team_management">Team Management</string>
+    <string name="inventory">Inventory</string>
+    <string name="multiplayer_inactive">Multiplayer Inactive</string>
+    <string name="mute_sound">Mute Sound</string>
+    <string name="logout">Logout</string>
+    <string name="google_login">Google login</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="cancel">Cancel</string>
+    <string name="repeat_password">repeat password</string>
+    <string name="quick_slash">Quick Slash</string>
+    <string name="smash">Smash</string>
+    <string name="defend">Defend</string>
+    <string name="run">Run</string>
+    <string name="friendly_character">Friendly Character</string>
+    <string name="enemy_character">Enemy Character</string>
 </resources>

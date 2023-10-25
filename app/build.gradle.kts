@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+//    Animation
+    implementation ("com.daimajia.androidanimations:library:2.4@aar")
+
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

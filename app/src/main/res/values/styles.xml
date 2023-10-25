@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="InputField">
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="PrimaryButton">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/transperantPrimary</item>
+    </style>
+</resources>
