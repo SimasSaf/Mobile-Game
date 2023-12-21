@@ -61,9 +61,16 @@ class LoginFragment : Fragment() {
 //        itemDAO.addItem(item3)
 //        itemDAO.addItem(item4)
 //        //
-        initializeSignInButton()
-        initializeRegisterButton()
-        initializeGoogleSignInButton()
+        viewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
+            if (isLoggedIn) {
+                findNavController().navigate(R.id.homeFragment)
+            } else {
+                initializeSignInButton()
+                initializeRegisterButton()
+                initializeGoogleSignInButton()
+                observeViewModel()
+            }
+        }
 
         return binding.root
     }
