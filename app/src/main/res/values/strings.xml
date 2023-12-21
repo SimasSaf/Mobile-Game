@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">IdleGame</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="web_client_id">366817725520-7m21h88tcg8e37dbl2377h9cnap5sk9t.apps.googleusercontent.com</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="singleplayer">Singleplayer</string>
     <string name="team_management">Team Management</string>

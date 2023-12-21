@@ -5,9 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_login_scene"
-    android:theme="@style/Theme.AppCompat.Light"
-    app:hintTextColor="@color/black"
-    android:textColorHint="@color/black"
     android:background="@drawable/login_background"
     tools:context=".LoginFragment">
 
@@ -35,21 +32,22 @@
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:hint="@string/email"
-        app:hintTextColor="@color/white"
         android:textColorHint="@color/white"
+        app:hintTextColor="@color/white"
+        app:boxBackgroundColor="@color/transperantBlack"
+        app:boxStrokeColor="@color/selector"
+        app:boxStrokeWidth="1dp"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:boxBackgroundColor="@color/transperantBlack"
-        app:boxStrokeColor="@color/selector"
-        app:boxStrokeWidth="1dp"
-        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Large">
+        app:layout_constraintVertical_bias="0.3">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:inputType="textAutoComplete"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,19 +61,21 @@
         app:boxBackgroundColor="@color/transperantBlack"
         app:boxStrokeColor="@color/selector"
         app:boxStrokeWidth="1dp"
-        app:hintTextColor="@color/black"
+        app:hintTextColor="@color/white"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#FFFFFF"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLoginField"
-        app:layout_constraintVertical_bias="0.0"
-        app:passwordToggleEnabled="false"
-        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Large">
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:textColor="@color/white"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

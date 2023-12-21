@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_singleplayerFragment"
             app:destination="@id/singleplayerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_inventoryFragment"
+            app:destination="@id/inventoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -37,4 +40,9 @@
         android:name="com.idlegame.SingleplayerFragment"
         android:label="fragment_singleplayer"
         tools:layout="@layout/fragment_singleplayer" />
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="com.idlegame.InventoryFragment"
+        android:label="fragment_inventory"
+        tools:layout="@layout/fragment_inventory" />
 </navigation>

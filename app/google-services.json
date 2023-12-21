@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "366817725520",
+    "project_id": "idlegame-4313e",
+    "storage_bucket": "idlegame-4313e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366817725520:android:f0bb4d92defb2d85419555",
+        "android_client_info": {
+          "package_name": "com.idlegame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366817725520-ppj9uhfolmrdjs2uho3b7ir0b7912ejp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.idlegame",
+            "certificate_hash": "320df0d2489e426a2bdf38b84ab9f7099b7701d5"
+          }
+        },
+        {
+          "client_id": "366817725520-7m21h88tcg8e37dbl2377h9cnap5sk9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4au1QsgLlgWUAWI8JAVPPNctGXt0Isk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "366817725520-7m21h88tcg8e37dbl2377h9cnap5sk9t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,64 +1,96 @@
 package com.idlegame
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageButton
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.idlegame.databinding.FragmentHomeBinding
+import com.idlegame.model.GoogleSignInModel
+import com.idlegame.R
 
 class HomeFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var googleSignInModel: GoogleSignInModel
+    private var doubleBackToExitPressedOnce = false
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        googleSignInModel = GoogleSignInModel(requireContext())
+        setupBackPressHandler()
+        setupAnimationsAndClickListeners()
+
+        return binding.root
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+    private fun setupAnimationsAndClickListeners() {
+        val bounceAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.bounce)
 
-        val bounceAnimation1 = AnimationUtils.loadAnimation(requireContext(), R.anim.bounce)
-        val bounceAnimation2 = AnimationUtils.loadAnimation(requireContext(), R.anim.bounce)
-        val bounceAnimation3 = AnimationUtils.loadAnimation(requireContext(), R.anim.bounce)
-        val bounceAnimation4 = AnimationUtils.loadAnimation(requireContext(), R.anim.bounce)
+        with(binding) {
+            initializeButton(homeSingleplayerImageButton, bounceAnimation, 0) {
+                findNavController().navigate(R.id.singleplayerFragment)
+            }
+            initializeButton(homeTeamImageButton, bounceAnimation, 200) {
+                // Inactive for now
+            }
+            initializeButton(homeInventoryImageButton, bounceAnimation, 400) {
+                findNavController().navigate(R.id.inventoryFragment)
+            }
+            initializeButton(homeMultiplayerImageButton, bounceAnimation, 600) {
+                // Will Be Inactive for a while
+            }
 
-        initializeSingleplayerImageButton(view, bounceAnimation1, 0)
-        initializeTeamImageButton(view, bounceAnimation2, 200)
-        initializeInventoryButton(view, bounceAnimation3, 400)
-        initializeMultiplayerButton(view, bounceAnimation4, 600)
-
-        return view
-    }
-
-    private fun initializeSingleplayerImageButton(view: View, bounceAnimation: Animation, delay: Long) {
-        val singleplayerImageButton = view.findViewById<ImageButton>(R.id.homeSingleplayerImageButton)
-        bounceAnimation.startOffset = delay
-        singleplayerImageButton.startAnimation(bounceAnimation)
-
-        singleplayerImageButton.setOnClickListener {
-            findNavController().navigate(R.id.singleplayerFragment)
+            logoutImageButton.setOnClickListener {
+                googleSignInModel.logOutUser { success ->
+                    if (success) {
+                        findNavController().navigate(R.id.loginFragment)
+                    } else {
+                        Toast.makeText(context, "Logout failed, please try again.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 
-    private fun initializeTeamImageButton(view: View, bounceAnimation: Animation, delay: Long) {
-        val teamImageButton = view.findViewById<ImageButton>(R.id.homeTeamImageButton)
-        bounceAnimation.startOffset = delay
-        teamImageButton.startAnimation(bounceAnimation)
+    private fun initializeButton(button: View, animation: Animation, delay: Long, onClick: () -> Unit) {
+        animation.startOffset = delay  // Set startOffset on the animation
+        button.apply {
+            startAnimation(animation)
+            setOnClickListener { onClick() }
+        }
     }
 
-    private fun initializeInventoryButton(view: View, bounceAnimation: Animation, delay: Long) {
-        val inventoryImageButton = view.findViewById<ImageButton>(R.id.homeInventoryImageButton)
-        bounceAnimation.startOffset = delay
-        inventoryImageButton.startAnimation(bounceAnimation)
+    private fun setupBackPressHandler() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (doubleBackToExitPressedOnce) {
+                    requireActivity().finish() // Exit the app
+                    return
+                }
+
+                doubleBackToExitPressedOnce = true
+                Toast.makeText(context, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+                // Reset the flag after 2 seconds
+                Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
-    private fun initializeMultiplayerButton(view: View, bounceAnimation: Animation, delay: Long) {
-//        val multiplayerImageButton = view.findViewById<ImageButton>(R.id.homeMultiplayerImageButton)
-//        bounceAnimation.startOffset = delay
-//        multiplayerImageButton.startAnimation(bounceAnimation)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

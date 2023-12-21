@@ -25,7 +25,7 @@
         android:textAllCaps="true" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/friend_char"
         android:contentDescription="@string/friendly_character"
         android:layout_width="216dp"
         android:layout_height="302dp"
@@ -123,7 +123,7 @@
         app:strokeWidth="1dp" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/enemy_char"
         android:layout_width="326dp"
         android:layout_height="186dp"
         android:contentDescription="@string/enemy_character"
