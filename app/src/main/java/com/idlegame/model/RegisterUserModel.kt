@@ -1,5 +1,6 @@
 package com.idlegame.model
 
+import UserDAO
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -7,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class RegisterUserModel {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val userDAO: UserDAO = UserDAO()
 
     fun registerUser(email: String, password: String, repeatedPassword: String, callback: (Boolean, String) -> Unit) {
         val checkRegisterInputsResponse = checkRegisterInputs(email, password, repeatedPassword)
@@ -18,7 +20,14 @@ class RegisterUserModel {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    callback(true, "Registration successful")
+                    val user = auth.currentUser
+                    userDAO.saveNewUserData(user?.uid ?: "", email) { success, message ->
+                        if (success) {
+                            callback(true, "Registration successful")
+                        } else {
+                            callback(false, message)
+                        }
+                    }
                 } else {
                     val errorMessage = when (val exception = task.exception) {
                         is FirebaseAuthWeakPasswordException -> "Password is too weak"

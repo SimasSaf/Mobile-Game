@@ -15,14 +15,46 @@ class ItemDAO {
         itemsCollection.document(item.id).set(item)
     }
 
-    fun getItem(itemId: String, onComplete: (Item?) -> Unit) {
+    fun getItemByName(itemName: String, onComplete: (Item?) -> Unit) {
+        Log.i("ItemDAO", "Fetching item by name: $itemName")
+
+        itemsCollection.whereEqualTo("name", itemName).limit(1).get()
+            .addOnSuccessListener { result ->
+                if (result.documents.isNotEmpty()) {
+                    Log.i("ItemDAO", "Item found: $itemName")
+                    val item = result.documents.first().toObject<Item>()
+                    onComplete(item)
+                } else {
+                    Log.i("ItemDAO", "Item not found: $itemName")
+                    onComplete(null)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("ItemDAO", "Error fetching item: $itemName, Error: ${e.message}")
+                onComplete(null)
+            }
+    }
+
+    fun getItemById(itemId: String, onComplete: (Item?) -> Unit) {
+        Log.d("ItemDAO", "Fetching item by id: $itemId")
+
         itemsCollection.document(itemId).get()
             .addOnSuccessListener { document ->
-                val item = document.toObject<Item>()
-                onComplete(item)
+                if (document.exists()) {
+                    Log.d("ItemDAO", "Item found with id: $itemId")
+                    val item = document.toObject<Item>()
+                    onComplete(item)
+                } else {
+                    Log.d("ItemDAO", "Item not found with id: $itemId")
+                    onComplete(null)  // Item not found
+                }
             }
-            .addOnFailureListener { onComplete(null) }
+            .addOnFailureListener { e ->
+                Log.e("ItemDAO", "Error fetching item by id: $itemId, Error: ${e.message}")
+                onComplete(null)  // Error occurred
+            }
     }
+
 
     fun getAllItems(onComplete: (List<Item>?) -> Unit) {
         itemsCollection.get()

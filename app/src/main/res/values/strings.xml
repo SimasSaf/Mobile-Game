@@ -16,10 +16,7 @@
     <string name="email">email</string>
     <string name="cancel">Cancel</string>
     <string name="repeat_password">repeat password</string>
-    <string name="quick_slash">Quick Slash</string>
-    <string name="smash">Smash</string>
-    <string name="defend">Defend</string>
-    <string name="run">Run</string>
     <string name="friendly_character">Friendly Character</string>
     <string name="enemy_character">Enemy Character</string>
+    <string name="actionMove">Action Move</string>
 </resources>

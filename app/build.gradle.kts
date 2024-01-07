@@ -38,6 +38,10 @@ android {
 }
 
 dependencies {
+    // Glide for image processing outside the app
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
     //recycler view, list
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
@@ -51,6 +55,7 @@ dependencies {
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

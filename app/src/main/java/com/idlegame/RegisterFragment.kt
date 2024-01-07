@@ -30,7 +30,7 @@ class RegisterFragment : Fragment() {
         initializeCancelButton()
         initializeRegisterButton()
 
-        observeViewModel()
+        loadImages()
 
         return binding.root
     }
@@ -51,7 +51,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel() {
+    private fun loadImages() {
         viewModel.registrationStatus.observe(viewLifecycleOwner) { statusMessage ->
             Toast.makeText(context, statusMessage, Toast.LENGTH_SHORT).show()
             if (statusMessage == "Registration successful") {

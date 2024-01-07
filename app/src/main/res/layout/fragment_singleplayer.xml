@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/battle_samurai_background">
+    android:id="@+id/singleplayerBackground">
 
     <TextView
-        android:id="@+id/battle_hp"
+        android:id="@+id/battle_friend_hp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HP: 100/100"
@@ -25,21 +26,7 @@
         android:textAllCaps="true" />
 
     <ImageView
-        android:id="@+id/friend_char"
-        android:contentDescription="@string/friendly_character"
-        android:layout_width="216dp"
-        android:layout_height="302dp"
-        android:layout_marginBottom="-35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.991"
-        app:srcCompat="@drawable/pokemon1" />
-
-    <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/chatBox"
         android:layout_width="447dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
@@ -48,15 +35,14 @@
         app:layout_constraintHorizontal_bias="0.613"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934"
-        app:srcCompat="@drawable/battle_chatbox" />
+        app:layout_constraintVertical_bias="0.934" />
 
     <Button
-        android:id="@+id/attack_smash"
+        android:id="@+id/actionMove3"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:text="@string/smash"
+        android:text="@string/actionMove"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,11 +55,11 @@
         app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/attack_Defend"
+        android:id="@+id/actionMove2"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:text="@string/defend"
+        android:text="@string/actionMove"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,11 +74,11 @@
     <!--Enemy-->
 
     <Button
-        android:id="@+id/attack_run"
+        android:id="@+id/actionMove4"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:text="@string/run"
+        android:text="@string/actionMove"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,12 +91,12 @@
         app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/attack_quickSlash"
+        android:id="@+id/actionMove1"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:fontFamily="@font/mario"
-        android:text="@string/quick_slash"
+        android:text="@string/actionMove"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,14 +112,14 @@
         android:id="@+id/enemy_char"
         android:layout_width="326dp"
         android:layout_height="186dp"
+        android:layout_marginBottom="-100dp"
         android:contentDescription="@string/enemy_character"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069"
-        app:srcCompat="@drawable/battle_samurai" />
+        app:layout_constraintVertical_bias="0.069" />
 
     <TextView
         android:id="@+id/battle_enemy_hp"
@@ -153,5 +139,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.075" />
+
+    <ImageView
+        android:id="@+id/onEnemy"
+        android:alpha="0.7"
+        android:layout_width="264dp"
+        android:layout_height="134dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.137" />
+
+    <ImageView
+        android:id="@+id/onFriend"
+        android:alpha="0.5"
+        android:layout_width="208dp"
+        android:layout_height="125dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.755" />
+
+    <ImageView
+        android:id="@+id/friend_char"
+        android:layout_width="wrap_content"
+        android:layout_height="389dp"
+        android:layout_marginBottom="-65dp"
+        android:layout_marginLeft="-100dp"
+        android:contentDescription="@string/friendly_character"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

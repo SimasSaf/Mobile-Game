@@ -5,13 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.idlegame.model.GoogleSignInModel
 import com.idlegame.model.LoginModel
 import com.google.firebase.auth.FirebaseUser
 
-class LoginViewModel(private val googleSignInModel: GoogleSignInModel) : ViewModel() {
-
-    private val loginModel = LoginModel()
+class LoginViewModel(private val loginModel: LoginModel) : ViewModel() {
 
     private val _loginResult = MutableLiveData<FirebaseUser?>()
     val loginResult: LiveData<FirebaseUser?>
@@ -34,7 +31,7 @@ class LoginViewModel(private val googleSignInModel: GoogleSignInModel) : ViewMod
     }
 
     fun handleLoginResult(data: Intent?) {
-        googleSignInModel.handleSignInResult(data, { user ->
+        loginModel.handleLoginInResult(data, { user ->
             _loginResult.value = user
             checkLoggedInStatus() // Update login status after handling the result
         }, { exception ->
@@ -43,7 +40,7 @@ class LoginViewModel(private val googleSignInModel: GoogleSignInModel) : ViewMod
     }
 
     fun getLoginIntent(): Intent {
-        return googleSignInModel.getSignInIntent()
+        return loginModel.getLoginInIntent()
     }
 
     fun loginWithEmail(email: String, password: String) {

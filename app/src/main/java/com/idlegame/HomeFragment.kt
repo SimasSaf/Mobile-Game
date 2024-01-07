@@ -11,25 +11,29 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.idlegame.databinding.FragmentHomeBinding
-import com.idlegame.model.GoogleSignInModel
-import com.idlegame.R
+import com.idlegame.model.LoginModel
+import com.idlegame.viewModel.ImageViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var googleSignInModel: GoogleSignInModel
+    private lateinit var loginModel: LoginModel
+    private lateinit var imageViewModel: ImageViewModel
     private var doubleBackToExitPressedOnce = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        loginModel = LoginModel(requireContext())
+        imageViewModel = ViewModelProvider(this)[ImageViewModel::class.java]
 
-        googleSignInModel = GoogleSignInModel(requireContext())
         setupBackPressHandler()
         setupAnimationsAndClickListeners()
+        loadImages()
 
         return binding.root
     }
@@ -52,7 +56,7 @@ class HomeFragment : Fragment() {
             }
 
             logoutImageButton.setOnClickListener {
-                googleSignInModel.logOutUser { success ->
+                loginModel.logOutUser { success ->
                     if (success) {
                         findNavController().navigate(R.id.loginFragment)
                     } else {
@@ -87,6 +91,32 @@ class HomeFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun loadImages() {
+        imageViewModel.imageURLs.observe(viewLifecycleOwner) { urls ->
+            Glide.with(this)
+                .load(urls.registerBackground)
+                .into(binding.homeBackgroundImage)
+            Glide.with(this)
+                .load(urls.homeSingleplayerImageButton)
+                .into(binding.homeSingleplayerImageButton)
+            Glide.with(this)
+                .load(urls.homeInventoryImageButton)
+                .into(binding.homeInventoryImageButton)
+            Glide.with(this)
+                .load(urls.homeTeamImageButton)
+                .into(binding.homeTeamImageButton)
+            Glide.with(this)
+                .load(urls.homeMultiplayerImageButton)
+                .into(binding.homeMultiplayerImageButton)
+            Glide.with(this)
+                .load(urls.muteImageButton)
+                .into(binding.muteImageButton)
+            Glide.with(this)
+                .load(urls.logoutImageButton)
+                .into(binding.logoutImageButton)
+        }
     }
 
     override fun onDestroyView() {

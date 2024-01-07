@@ -8,4 +8,6 @@
     <color name="secondary">#387f94</color>
     <color name="transperantSecondary">#99387F94</color>
     <color name="lightGrey">#ECEFF1</color>
+    <color name="pickedItemColor">#FF5722</color>
+    <color name="unpickedItemColor">#FFFFFF</color>
 </resources>
